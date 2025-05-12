@@ -2,6 +2,8 @@ body{
     border: 5px solid black;
     width: 50%;
     margin: 30%;
+    background-image: url(https://wallpapers.com/images/hd/mount-fuji-lake-japan-4k-0vknx3r8nalstf1c.jpg);
+    background-attachment: fixed;
 }
 h1{
     color:rgb(60, 233, 147);
