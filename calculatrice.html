@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculatrice</title>
+    <!-- Lien vers Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex justify-center items-center h-screen bg-gray-100 bg-cover" style="background-image: url('https://images.pexels.com/photos/1745708/pexels-photo-1745708.jpeg?cs=srgb&dl=pexels-1745708.jpg&fm=jpg');">
+    <div class="calculator bg-white border-2 border-gray-300 rounded-lg shadow-lg p-5 text-center">
+        <h1 class="text-xl font-bold mb-4">Calculatrice</h1>
+
+        <!-- Affichage des nombres et du résultat -->
+        <input type="text" id="display" readonly class="w-full text-right text-lg border border-gray-300 rounded mb-4 p-2">
+
+        <!-- Boutons pour entrer les chiffres -->
+        <div class="grid grid-cols-3 gap-2 mb-4">
+            <button class="number-button bg-gray-200 hover:bg-gray-300 p-2 rounded" data-value="1">1</button>
+            <button class="number-button bg-gray-200 hover:bg-gray-300 p-2 rounded" data-value="2">2</button>
+            <button class="number-button bg-gray-200 hover:bg-gray-300 p-2 rounded" data-value="3">3</button>
+            <button class="number-button bg-gray-200 hover:bg-gray-300 p-2 rounded" data-value="4">4</button>
+            <button class="number-button bg-gray-200 hover:bg-gray-300 p-2 rounded" data-value="5">5</button>
+            <button class="number-button bg-gray-200 hover:bg-gray-300 p-2 rounded" data-value="6">6</button>
+            <button class="number-button bg-gray-200 hover:bg-gray-300 p-2 rounded" data-value="7">7</button>
+            <button class="number-button bg-gray-200 hover:bg-gray-300 p-2 rounded" data-value="8">8</button>
+            <button class="number-button bg-gray-200 hover:bg-gray-300 p-2 rounded" data-value="9">9</button>
+            <button class="number-button bg-gray-200 hover:bg-gray-300 p-2 rounded" data-value="0">0</button>
+            <button id="clear-button" class="bg-red-500 hover:bg-red-600 text-white p-2 rounded">C</button>
+        </div>
+
+        <div class="grid grid-cols-5 gap-2">
+            <button id="add-button" class="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded">+</button>
+            <button id="subtract-button" class="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded">-</button>
+            <button id="multiply-button" class="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded">×</button>
+            <button id="divide-button" class="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded">÷</button>
+            <button id="equals-button" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded">=</button>
+        </div>
+    </div>
+
+    <script>
+        let currentNumber = '';
+        let previousNumber = '';
+        let operation = '';
+
+        // Gestion des boutons numériques
+        document.querySelectorAll('.number-button').forEach(button => {
+            button.addEventListener('click', () => {
+                currentNumber += button.getAttribute('data-value');
+                document.getElementById('display').value = currentNumber;
+            });
+        });
+
+        // Bouton "C" pour effacer
+        document.getElementById('clear-button').addEventListener('click', () => {
+            currentNumber = '';
+            previousNumber = '';
+            operation = '';
+            document.getElementById('display').value = '';
+        });
+
+        // Gestion des opérations
+        document.getElementById('add-button').addEventListener('click', () => {
+            setOperation('+');
+        });
+
+        document.getElementById('subtract-button').addEventListener('click', () => {
+            setOperation('-');
+        });
+
+        document.getElementById('multiply-button').addEventListener('click', () => {
+            setOperation('*');
+        });
+
+        document.getElementById('divide-button').addEventListener('click', () => {
+            setOperation('/');
+        });
+
+        // Bouton "=" pour calculer le résultat
+        document.getElementById('equals-button').addEventListener('click', () => {
+            if (previousNumber !== '' && currentNumber !== '' && operation !== '') {
+                const num1 = parseFloat(previousNumber);
+                const num2 = parseFloat(currentNumber);
+                let result;
+
+                switch (operation) {
+                    case '+':
+                        result = num1 + num2;
+                        break;
+                    case '-':
+                        result = num1 - num2;
+                        break;
+                    case '*':
+                        result = num1 * num2;
+                        break;
+                    case '/':
+                        if (num2 === 0) {
+                            result = 'Erreur : Division par zéro';
+                        } else {
+                            result = num1 / num2;
+                        }
+                        break;
+                }
+
+                document.getElementById('display').value = result;
+                currentNumber = '';
+                previousNumber = '';
+                operation = '';
+            }
+        });
+
+        // Fonction pour définir l'opération
+        function setOperation(op) {
+            if (currentNumber !== '') {
+                previousNumber = currentNumber;
+                currentNumber = '';
+                operation = op;
+                document.getElementById('display').value = `${previousNumber} ${operation}`;
+            }
+        }
+    </script>
+</body>
+</html>
