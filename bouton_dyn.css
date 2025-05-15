@@ -55,12 +55,23 @@ body {
     display: inline-block;
 }   
 
+.icondrag {
+    position: absolute; 
+    bottom: 20px;
+    right: 100px; 
+    width: 60px; 
+    height: 60px; 
+    text-decoration: none;
+    color: #fff;
+    display: inline-block;
+}  
+
 .layer {
   width: 55px;
   height: 55px;
   transition: transform 0.3s;
 }
-.icon:hover .layer {
+.icon:hover .layer, .icondrag:hover .layer {
   transform: rotate(-35deg) skew(20deg);
 }
 .layer span {
@@ -80,10 +91,10 @@ body {
   border-color: #fff;
 }
 
-.icon:hover.layer span {
+.icon:hover.layer span, .icondrag:hover.layer span {
   box-shadow: -1px 1px 3px #e6683c;
 }
-.icon .text {
+.icon .text, .icondrag .text {
   position: absolute;
   left: 50%;
   bottom: -5px;
@@ -92,27 +103,27 @@ body {
   transform: translateX(-50%);
   transition: bottom 0.3s ease, opacity 0.3s ease;
 }
-.icon:hover .text {
+.icon:hover .text, .icondrag:hover .text {
   bottom: -35px;
   opacity: 1;
 }
 
-.icon:hover .layer span:nth-child(1) {
+.icon:hover .layer span:nth-child(1), .icondrag:hover .layer span:nth-child(1) {
   opacity: 0.2;
 }
-.icon:hover .layer span:nth-child(2) {
+.icon:hover .layer span:nth-child(2), .icondrag:hover .layer span:nth-child(2) {
   opacity: 0.4;
   transform: translate(5px, -5px);
 }
-.icon:hover .layer span:nth-child(3) {
+.icon:hover .layer span:nth-child(3), .icondrag:hover .layer span:nth-child(3) {
   opacity: 0.6;
   transform: translate(10px, -10px);
 }
-.icon:hover .layer span:nth-child(4) {
+.icon:hover .layer span:nth-child(4), .icondrag:hover .layer span:nth-child(4) {
   opacity: 0.8;
   transform: translate(15px, -15px);
 }
-.icon:hover .layer span:nth-child(5) {
+.icon:hover .layer span:nth-child(5), .icondrag:hover .layer span:nth-child(5) {
   opacity: 1;
   transform: translate(20px, -20px);
 }
@@ -165,3 +176,13 @@ body {
     top: 0;
     left: 0;
 }
+
+
+
+
+
+
+
+
+
+
