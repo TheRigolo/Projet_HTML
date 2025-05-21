@@ -39,13 +39,21 @@
     </header>
 
     <!-- Principal Section -->
-    <div class="flex flex-col md:flex-row gap-8 mb-8" id="principal">
-      <!-- Expériences -->
-      <section class="flex-1">
-        <h2 class="text-2xl font-bold text-blue-900 text-center mb-2 maintitle">Expériences</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+  <!-- Colonne gauche -->
+  <div class="flex flex-col gap-8">
+    <!-- Expériences -->
+    <section class="flex-1">
+      <button type="button" class="toggle-section w-full flex items-center justify-between text-2xl font-bold text-blue-900 mb-2 focus:outline-none">
+        Expériences
+        <svg class="w-5 h-5 ml-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+      <div class="hidden">
         <div class="mb-4">
-          <p class="text-lg text-amber-100 ml-8 stagetitle"><strong>Guerre d'Austerlitz</strong> (1803-1815)</p>
-          <ul class="ml-12 list-disc text-white midbar">
+          <p class="text-lg text-amber-100 ml-8"><strong>Guerre d'Austerlitz</strong> (1803-1815)</p>
+          <ul class="ml-12 list-disc text-white">
             <li>Bras droit de Napoléon</li>
             <li>Découverte du goulag</li>
             <li>Participation à la première croisade</li>
@@ -54,55 +62,82 @@
           </ul>
         </div>
         <div>
-          <p class="text-lg text-amber-100 ml-8 stagetitle"><strong>Coupe du monde</strong> (2014)</p>
-          <ul class="ml-12 list-disc text-white midbar">
+          <p class="text-lg text-amber-100 ml-8"><strong>Coupe du monde</strong> (2014)</p>
+          <ul class="ml-12 list-disc text-white">
             <li>Visite de la ville d'Aubervilliers</li>
             <li>Grosse dégustation au burger king de Marrakech</li>
             <li>Démonstration de la technique ancestrale du moine Shaoline</li>
             <li>Découverte de l'Amérique</li>
           </ul>
         </div>
-      </section>
-      <!-- Formations -->
-      <section class="flex-1">
-        <h2 class="text-2xl font-bold text-blue-900 text-center mb-2 maintitle">Formations</h2>
-        <ul class="ml-12 list-disc text-white midbar">
+      </div>
+    </section>
+    <!-- Formations -->
+    <section class="flex-1">
+      <button type="button" class="toggle-section w-full flex items-center justify-between text-2xl font-bold text-blue-900 mb-2 focus:outline-none">
+        Formations
+        <svg class="w-5 h-5 ml-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+      <div class="hidden">
+        <ul class="ml-12 list-disc text-white">
           <li><strong>The Ecole</strong> (Paris - La Défense)</li>
           <li>Obtention du baccalauréat technologique <strong>(mention banger)</strong></li>
           <li><strong>Lycée inconnu au bataillon</strong> (Bordeaux)</li>
           <li>Obtention du Brevet des Collèges <strong>(mention de fou)</strong></li>
           <li><strong>Collège des bras cassés</strong> (Sartrouville)</li>
         </ul>
-      </section>
-      <!-- Compétences -->
-      <section class="flex-1">
-        <h2 class="text-2xl font-bold text-blue-900 text-center mb-2 maintitle">Compétences</h2>
-        <ul class="ml-12 list-disc text-white midbar">
+      </div>
+    </section>
+    <!-- Compétences -->
+    <section class="flex-1">
+      <button type="button" class="toggle-section w-full flex items-center justify-between text-2xl font-bold text-blue-900 mb-2 focus:outline-none">
+        Compétences
+        <svg class="w-5 h-5 ml-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+      <div class="hidden">
+        <ul class="ml-12 list-disc text-white">
           <li>Gestion du sommeil</li>
           <li>Expert en origami</li>
           <li>Maîtrise du retournement de situation</li>
           <li>Recherche sur Google</li>
           <li>Niveau confirmé en canular téléphonique</li>
         </ul>
-      </section>
-    </div>
-
-    <!-- Deuxième Section -->
-    <div class="flex flex-col md:flex-row gap-8 mb-12" id="deuxième">
-      <!-- Autres -->
-      <section class="flex-1">
-        <h2 class="text-xl font-bold text-orange-700 text-center mb-2 titleside">Autres</h2>
-        <ul class="ml-8 list-disc text-white sidebar">
+      </div>
+    </section>
+  </div>
+  <!-- Colonne droite -->
+  <div class="flex flex-col gap-8">
+    <!-- Autres -->
+    <section class="flex-1">
+      <button type="button" class="toggle-section w-full flex items-center justify-between text-xl font-bold text-orange-700 mb-2 focus:outline-none">
+        Autres
+        <svg class="w-5 h-5 ml-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+      <div class="hidden">
+        <ul class="ml-8 list-disc text-white">
           <li>Obtention du permis de cuisine</li>
           <li>Certificat d'assurance maladie</li>
           <li>Brevet d'initiation au transport en commun</li>
           <li>Actif sur les serveurs discord</li>
         </ul>
-      </section>
-      <!-- Intérêts -->
-      <section class="flex-1">
-        <h2 class="text-xl font-bold text-orange-700 text-center mb-2 titleside">Intérêts</h2>
-        <ul class="ml-8 list-disc text-white sidebar">
+      </div>
+    </section>
+    <!-- Intérêts -->
+    <section class="flex-1">
+      <button type="button" class="toggle-section w-full flex items-center justify-between text-xl font-bold text-orange-700 mb-2 focus:outline-none">
+        Intérêts
+        <svg class="w-5 h-5 ml-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+      <div class="hidden">
+        <ul class="ml-8 list-disc text-white">
           <li>Rubik's cube (depuis 10 ans)</li>
           <li>Pétanque</li>
           <li>Disney</li>
@@ -110,17 +145,26 @@
           <li>Jeux-Vidéos</li>
           <li>Bagarre</li>
         </ul>
-      </section>
-      <!-- Langues -->
-      <section class="flex-1">
-        <h2 class="text-xl font-bold text-orange-700 text-center mb-2 titleside">Langues</h2>
-        <ul class="ml-8 list-disc text-white sidebar">
+      </div>
+    </section>
+    <!-- Langues -->
+    <section class="flex-1">
+      <button type="button" class="toggle-section w-full flex items-center justify-between text-xl font-bold text-orange-700 mb-2 focus:outline-none">
+        Langues
+        <svg class="w-5 h-5 ml-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+      <div class="hidden">
+        <ul class="ml-8 list-disc text-white">
           <li>Le villageois minecraft (natif)</li>
           <li>La langue de Molière (langue maternelle)</li>
           <li>Langue des signes (scolaire LV1)</li>
         </ul>
-      </section>
-    </div>
+      </div>
+    </section>
+  </div>
+</div>
 
     <!-- Boutons interactifs -->
     <div class="flex flex-wrap justify-center gap-8">
@@ -222,5 +266,14 @@
       </div>
     </div>
   </div>
+  <script>
+  document.querySelectorAll('.toggle-section').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      const content = btn.nextElementSibling;
+      content.classList.toggle('hidden');
+      btn.querySelector('svg').classList.toggle('rotate-90');
+    });
+  });
+</script>
 </body>
 </html>
