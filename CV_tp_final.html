@@ -1,198 +1,226 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV - Tumtumtum Sahur</title>
-    <link rel="stylesheet" href="CV_TP_final.css">
-    <link rel="stylesheet" href="bouton_dyn.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV - Tumtumtum Sahur</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Animations boutons et bulles */
+    .btn-anim .layer { width:55px; height:55px; transition:transform .3s; position:relative;}
+    .btn-anim:hover .layer { transform: rotate(-35deg) skew(20deg);}
+    .layer span { position:absolute; top:0; left:0; width:100%; height:100%; border:1px solid #fff; border-radius:15px; transition:all .3s;}
+    .btn-anim:hover .layer span:nth-child(1) { opacity:0.2;}
+    .btn-anim:hover .layer span:nth-child(2) { opacity:0.4; transform:translate(5px,-5px);}
+    .btn-anim:hover .layer span:nth-child(3) { opacity:0.6; transform:translate(10px,-10px);}
+    .btn-anim:hover .layer span:nth-child(4) { opacity:0.8; transform:translate(15px,-15px);}
+    .btn-anim:hover .layer span:nth-child(5) { opacity:1; transform:translate(20px,-20px);}
+    .btn-anim .btn-text { position:absolute; left:50%; bottom:-5px; opacity:0; font-weight:500; transform:translateX(-50%); transition:bottom .3s, opacity .3s;}
+    .btn-anim:hover .btn-text { bottom:-35px; opacity:1;}
+    .miniature { display:block; width:60px; height:60px; overflow:hidden; border-radius:50%; position:relative;}
+    .button-image { width:100%; height:100%; object-fit:cover; position:absolute; top:0; left:0;}
+    /* Bulle animée */
+    .btn-anim .bubble { pointer-events:none; opacity:0; transition:all .3s; position:absolute; left:50%; bottom:70px; transform:translateX(-50%);}
+    .btn-anim:hover .bubble { opacity:1; pointer-events:auto;}
+  </style>
 </head>
-<body>  
-    <div class="container">
-        <div class="header">
-            <div>
-                <h1>Tumtumtum Sahur</h1>
-                <p id="born"><strong>30/02/1945</strong></p>
-                <p id="intro">Diplômé d’une formation tellement extravagante qu’elle pourrait figurer dans le Livre Guinness des records de l’éducation alternative, 
-                    j’ai acquis des compétences dont personne ne savait qu’elles étaient nécessaires. Expert en l’art de jongler avec les concepts improbables, 
-                    capable de résoudre des problèmes inexistants avant même qu’ils n’apparaissent, et doté d’une capacité d’adaptation si poussée qu’on me soupçonne d’être une 
-                    créature métamorphe. Si votre entreprise cherche une touche d’absurde, d’inattendu et de génie incompris, alors c’est moi qu’il vous faut.</p>
-            </div>
-        </div>
-        
-        <div id="principal">
-            <div id="premier">
-                <div class="right">
-                    <h2 class="maintitle">Expériences</h2>
-                    <p class="stagetitle"><strong>Guerre d'Austerlitz</strong> (1803-1815)</p>
-                    <ul class="midbar">
-                        <li>Bras droit de Napoléon</li>
-                        <li>Découverte du goulag</li>
-                        <li>Participation à la première croisade</li>
-                        <li>Octogone face à Vercingétorix</li>
-                        <li>Cours de self défense</li>
-                    </ul>
-                    <p class="stagetitle"><strong>Coupe du monde</strong> (2014)</p>
-                    <ul class="midbar">
-                        <li>Visite de la ville d'Aubervilliers</li>
-                        <li>Grosse dégustation au burger king de Marrakech</li>
-                        <li>Démonstration de la technique ancestrale du moine Shaoline</li>
-                        <li>Découverte de l'Amérique</li>
-                    </ul>
-                </div>
-        
-                <div class="right">
-                    <h2 class="maintitle">Formations</h2>
-                    <ul class="midbar">
-                        <li><strong>The Ecole</strong> (Paris - La Défense)</li>
-                        <li>Obtention du baccalauréat technologique <strong> (mention banger)</strong></li>
-                        <li><strong>Lycée inconnu au bataillon</strong> (Bordeaux)</li>
-                        <li>Obtention du Brevet des Collèges <strong> (mention de fou)</strong></li>
-                        <li><strong>Collège des bras cassés</strong> (Sartrouville)</li>
-                    </ul>
-                </div>
-        
-                <div class="right">
-                    <h2 class="maintitle">Compétences</h2>
-                    <ul class="midbar">
-                        <li>Gestion du sommeil</li>
-                        <li>Expert en origami</li>
-                        <li>Maîtrise du retournement de situation</li>
-                        <li>Recherche sur Google</li>
-                        <li>Niveau confirmé en canular téléphonique</li>
-                    </ul>
-                </div>
-            </div>
+<body class="bg-cover bg-fixed min-h-screen" style="background-image: url('https://wallpapers.com/images/hd/mount-fuji-lake-japan-4k-0vknx3r8nalstf1c.jpg');">
+  <div class="max-w-4xl mx-auto my-8 bg-cyan-700 bg-opacity-90 rounded-xl shadow-lg border-4 border-black p-8">
+    <!-- Header -->
+    <header class="mb-8 text-center">
+      <h1 class="text-4xl font-bold text-green-300 mb-2">Tumtumtum Sahur</h1>
+      <p class="text-lg text-white mb-2"><strong>30/02/1945</strong></p>
+      <p class="text-white italic" id="intro">
+        Diplômé d’une formation tellement extravagante qu’elle pourrait figurer dans le Livre Guinness des records de l’éducation alternative,
+        j’ai acquis des compétences dont personne ne savait qu’elles étaient nécessaires. Expert en l’art de jongler avec les concepts improbables,
+        capable de résoudre des problèmes inexistants avant même qu’ils n’apparaissent, et doté d’une capacité d’adaptation si poussée qu’on me soupçonne d’être une
+        créature métamorphe. Si votre entreprise cherche une touche d’absurde, d’inattendu et de génie incompris, alors c’est moi qu’il vous faut.
+      </p>
+    </header>
 
-            <div id="deuxième">
-                <div class="left">
-                    <h2 class="titleside">Autres</h2>
-                    <ul class="sidebar">
-                        <li>Obtention du permis de cuisine</li>
-                        <li>Certificat d'assurance maladie</li>
-                        <li>Brevet d'initiation au transport en commun</li>
-                        <li>Actif sur les serveurs discord</li>
-                    </ul>
-                </div>
-        
-                <div class="left">
-                    <h2 class="titleside">Intérêts</h2>
-                    <ul class="sidebar">
-                        <li>Rubik's cube (depuis 10 ans)</li>
-                        <li>Pétanque</li>
-                        <li>Disney</li>
-                        <li>Piano</li>
-                        <li>Jeux-Vidéos</li>
-                        <li>Bagarre</li>
-                    </ul>
-                </div>
-        
-                <div class="left">
-                    <h2 class="titleside">Langues</h2>
-                    <ul class="sidebar">
-                        <li>Le villageois minecraft (natif)</li>
-                        <li>La langue de Molière (langue maternelle)</li>
-                        <li>Langue des signes (scolaire LV1)</li>
-                    </ul>
-                </div>
-            </div>
+    <!-- Principal Section -->
+    <div class="flex flex-col md:flex-row gap-8 mb-8" id="principal">
+      <!-- Expériences -->
+      <section class="flex-1">
+        <h2 class="text-2xl font-bold text-blue-900 text-center mb-2 maintitle">Expériences</h2>
+        <div class="mb-4">
+          <p class="text-lg text-amber-100 ml-8 stagetitle"><strong>Guerre d'Austerlitz</strong> (1803-1815)</p>
+          <ul class="ml-12 list-disc text-white midbar">
+            <li>Bras droit de Napoléon</li>
+            <li>Découverte du goulag</li>
+            <li>Participation à la première croisade</li>
+            <li>Octogone face à Vercingétorix</li>
+            <li>Cours de self défense</li>
+          </ul>
         </div>
-
-        <!-- bouton interactif -->
-         <!-- mansory -->
-        <div class="bulle-container mt-10">
-            <div class="bulle">
-                <div class="buble-back">
-                    <div class="buble-title">
-                        <div class="img">
-                                <img src="https://logos-world.net/wp-content/uploads/2022/12/Mansory-Logo-500x281.jpg" alt="Nouvelle icône" width="50" height="50">
-                        </div>
-                        <div class="details">
-                            <div class="name">Mansory</div>
-                            <div class="hashtag">#fancars</div>
-                        </div>
-                    </div>
-                    <div class="about">TOP MARQUES</div>
-                </div>
-            </div>
-            <div class="text">
-                <a class="icon" href="https://www.mansory.com/">
-                    <div class="layer">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span class="miniature">
-                            <img src="https://www.agendalux.lu/wp-content/uploads/2022/03/mansory.jpg" alt="Nouvelle icône" class="button-image" width="30" height="30">
-                        </span>
-                    </div>
-                    <div class="text">MANSORY</div>
-                </a>
-            </div>
+        <div>
+          <p class="text-lg text-amber-100 ml-8 stagetitle"><strong>Coupe du monde</strong> (2014)</p>
+          <ul class="ml-12 list-disc text-white midbar">
+            <li>Visite de la ville d'Aubervilliers</li>
+            <li>Grosse dégustation au burger king de Marrakech</li>
+            <li>Démonstration de la technique ancestrale du moine Shaoline</li>
+            <li>Découverte de l'Amérique</li>
+          </ul>
         </div>
-        <!-- bouton dragon-->
-         <div class="bulle-container mt-10">
-            <div class="bulle">
-                <div class="buble-back">
-                    <div class="buble-title">
-                        <div class="img">
-                                <img src="https://th.bing.com/th/id/OIP.dTNRv0cph33uQRb5K4uizQHaEK?cb=iwc2&rs=1&pid=ImgDetMain" alt="Nouvelle icône" width="50" height="50">
-                        </div>
-                        <div class="details">
-                            <div class="name">DRAGON</div>
-                            <div class="hashtag">#fictif</div>
-                        </div>
-                    </div>
-                    <div class="about">FUNNY</div>
-                </div>
-            </div>
-            <div class="text">
-                <a class="icondrag" href="dragon.html">
-                    <div class="layer">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span class="miniature">
-                            <img src="https://th.bing.com/th/id/R.0f64c34133b06a8b79c8b737daf04969?rik=8JyxEnq2Oatv0w&pid=ImgRaw&r=0" alt="Nouvelle icône" class="button-image" width="30" height="30">
-                        </span>
-                    </div>
-                    <div class="text">DRAGON</div>
-                </a>
-            </div>
-        </div>
-        <!-- bouton calculatrice-->
-         <div class="bulle-container mt-10">
-            <div class="bulle">
-                <div class="buble-back">
-                    <div class="buble-title">
-                        <div class="img">
-                                <img src="https://th.bing.com/th/id/OIP.dTerXI25usv9XKsETOEGKwHaFD?cb=iwc2&rs=1&pid=ImgDetMain" alt="Nouvelle icône" width="50" height="50">
-                        </div>
-                        <div class="details">
-                            <div class="name">CALCULATRICE</div>
-                            <div class="hashtag">#maths</div>
-                        </div>
-                    </div>
-                    <div class="about">MATHEMATIQUE</div>
-                </div>
-            </div>
-            <div class="text">
-                <a class="iconcal" href="calculatrice.html">
-                    <div class="layer">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span class="miniature">
-                            <img src="https://cdn.pixabay.com/photo/2017/04/10/12/18/calculator-2218344_1280.jpg" alt="Nouvelle icône" class="button-image" width="30" height="30">
-                        </span>
-                    </div>
-                    <div class="text">CALCULATRICE</div>
-                </a>
-            </div>
-        </div>
-
+      </section>
+      <!-- Formations -->
+      <section class="flex-1">
+        <h2 class="text-2xl font-bold text-blue-900 text-center mb-2 maintitle">Formations</h2>
+        <ul class="ml-12 list-disc text-white midbar">
+          <li><strong>The Ecole</strong> (Paris - La Défense)</li>
+          <li>Obtention du baccalauréat technologique <strong>(mention banger)</strong></li>
+          <li><strong>Lycée inconnu au bataillon</strong> (Bordeaux)</li>
+          <li>Obtention du Brevet des Collèges <strong>(mention de fou)</strong></li>
+          <li><strong>Collège des bras cassés</strong> (Sartrouville)</li>
+        </ul>
+      </section>
+      <!-- Compétences -->
+      <section class="flex-1">
+        <h2 class="text-2xl font-bold text-blue-900 text-center mb-2 maintitle">Compétences</h2>
+        <ul class="ml-12 list-disc text-white midbar">
+          <li>Gestion du sommeil</li>
+          <li>Expert en origami</li>
+          <li>Maîtrise du retournement de situation</li>
+          <li>Recherche sur Google</li>
+          <li>Niveau confirmé en canular téléphonique</li>
+        </ul>
+      </section>
     </div>
+
+    <!-- Deuxième Section -->
+    <div class="flex flex-col md:flex-row gap-8 mb-12" id="deuxième">
+      <!-- Autres -->
+      <section class="flex-1">
+        <h2 class="text-xl font-bold text-orange-700 text-center mb-2 titleside">Autres</h2>
+        <ul class="ml-8 list-disc text-white sidebar">
+          <li>Obtention du permis de cuisine</li>
+          <li>Certificat d'assurance maladie</li>
+          <li>Brevet d'initiation au transport en commun</li>
+          <li>Actif sur les serveurs discord</li>
+        </ul>
+      </section>
+      <!-- Intérêts -->
+      <section class="flex-1">
+        <h2 class="text-xl font-bold text-orange-700 text-center mb-2 titleside">Intérêts</h2>
+        <ul class="ml-8 list-disc text-white sidebar">
+          <li>Rubik's cube (depuis 10 ans)</li>
+          <li>Pétanque</li>
+          <li>Disney</li>
+          <li>Piano</li>
+          <li>Jeux-Vidéos</li>
+          <li>Bagarre</li>
+        </ul>
+      </section>
+      <!-- Langues -->
+      <section class="flex-1">
+        <h2 class="text-xl font-bold text-orange-700 text-center mb-2 titleside">Langues</h2>
+        <ul class="ml-8 list-disc text-white sidebar">
+          <li>Le villageois minecraft (natif)</li>
+          <li>La langue de Molière (langue maternelle)</li>
+          <li>Langue des signes (scolaire LV1)</li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- Boutons interactifs -->
+    <div class="flex flex-wrap justify-center gap-8">
+      <!-- Mansory -->
+      <div class="relative flex flex-col items-center btn-anim mt-10">
+        <div class="bubble z-10 bg-purple-900 border-4 border-gray-200 rounded-xl shadow-lg p-4 w-64">
+          <div class="flex gap-3 items-center">
+            <div class="w-12 h-12 rounded-lg bg-white flex items-center justify-center border border-orange-400 img">
+              <img src="https://logos-world.net/wp-content/uploads/2022/12/Mansory-Logo-500x281.jpg" alt="Mansory" class="w-10 h-10 object-contain" />
+            </div>
+            <div class="details">
+              <div class="font-bold text-white text-lg name">Mansory</div>
+              <div class="text-xs text-gray-300 hashtag">#fancars</div>
+            </div>
+          </div>
+          <div class="about text-gray-300 pt-2">TOP MARQUES</div>
+        </div>
+        <a href="https://www.mansory.com/" class="relative w-16 h-16 flex items-center justify-center rounded-full bg-white shadow-lg hover:scale-110 transition-transform duration-200">
+          <div class="layer">
+            <span></span><span></span><span></span><span></span>
+            <span class="miniature">
+              <img src="https://www.agendalux.lu/wp-content/uploads/2022/03/mansory.jpg" alt="Mansory" class="button-image" width="30" height="30">
+            </span>
+          </div>
+          <div class="btn-text text-white">MANSORY</div>
+        </a>
+      </div>
+      <!-- Dragon -->
+      <div class="relative flex flex-col items-center btn-anim mt-10">
+        <div class="bubble z-10 bg-purple-900 border-4 border-gray-200 rounded-xl shadow-lg p-4 w-64">
+          <div class="flex gap-3 items-center">
+            <div class="w-12 h-12 rounded-lg bg-white flex items-center justify-center border border-orange-400 img">
+              <img src="https://th.bing.com/th/id/OIP.dTNRv0cph33uQRb5K4uizQHaEK?cb=iwc2&rs=1&pid=ImgDetMain" alt="Dragon" class="w-10 h-10 object-contain" />
+            </div>
+            <div class="details">
+              <div class="font-bold text-white text-lg name">DRAGON</div>
+              <div class="text-xs text-gray-300 hashtag">#fictif</div>
+            </div>
+          </div>
+          <div class="about text-gray-300 pt-2">FUNNY</div>
+        </div>
+        <a href="dragon.html" class="relative w-16 h-16 flex items-center justify-center rounded-full bg-white shadow-lg hover:scale-110 transition-transform duration-200">
+          <div class="layer">
+            <span></span><span></span><span></span><span></span>
+            <span class="miniature">
+              <img src="https://th.bing.com/th/id/R.0f64c34133b06a8b79c8b737daf04969?rik=8JyxEnq2Oatv0w&pid=ImgRaw&r=0" alt="Dragon" class="button-image" width="30" height="30">
+            </span>
+          </div>
+          <div class="btn-text text-white">DRAGON</div>
+        </a>
+      </div>
+      <!-- Calculatrice -->
+      <div class="relative flex flex-col items-center btn-anim mt-10">
+        <div class="bubble z-10 bg-purple-900 border-4 border-gray-200 rounded-xl shadow-lg p-4 w-64">
+          <div class="flex gap-3 items-center">
+            <div class="w-12 h-12 rounded-lg bg-white flex items-center justify-center border border-orange-400 img">
+              <img src="https://th.bing.com/th/id/OIP.dTerXI25usv9XKsETOEGKwHaFD?cb=iwc2&rs=1&pid=ImgDetMain" alt="Calculatrice" class="w-10 h-10 object-contain" />
+            </div>
+            <div class="details">
+              <div class="font-bold text-white text-lg name">CALCULATRICE</div>
+              <div class="text-xs text-gray-300 hashtag">#maths</div>
+            </div>
+          </div>
+          <div class="about text-gray-300 pt-2">MATHEMATIQUE</div>
+        </div>
+        <a href="calculatrice.html" class="relative w-16 h-16 flex items-center justify-center rounded-full bg-white shadow-lg hover:scale-110 transition-transform duration-200">
+          <div class="layer">
+            <span></span><span></span><span></span><span></span>
+            <span class="miniature">
+              <img src="https://cdn.pixabay.com/photo/2017/04/10/12/18/calculator-2218344_1280.jpg" alt="Calculatrice" class="button-image" width="30" height="30">
+            </span>
+          </div>
+          <div class="btn-text text-white">CALCULATRICE</div>
+        </a>
+      </div>
+      <!-- Me contacter -->
+      <div class="relative flex flex-col items-center btn-anim mt-10">
+        <div class="bubble z-10 bg-purple-900 border-4 border-gray-200 rounded-xl shadow-lg p-4 w-64">
+          <div class="flex gap-3 items-center">
+            <div class="w-12 h-12 rounded-lg bg-white flex items-center justify-center border border-orange-400 img">
+              <img src="https://logowik.com/content/uploads/images/513_email.jpg" alt="Contact" class="w-10 h-10 object-contain" />
+            </div>
+            <div class="details">
+              <div class="font-bold text-white text-lg name">ME CONTACTER</div>
+              <div class="text-xs text-gray-300 hashtag">#contact</div>
+            </div>
+          </div>
+          <div class="about text-gray-300 pt-2">Répondre au questionnaire</div>
+        </div>
+        <a href="quiz.html" class="relative w-16 h-16 flex items-center justify-center rounded-full bg-white shadow-lg hover:scale-110 transition-transform duration-200">
+          <div class="layer">
+            <span></span><span></span><span></span><span></span>
+            <span class="miniature">
+              <img src="https://cdn.pixabay.com/photo/2018/04/28/17/38/contact-icon-3357824_1280.png" alt="Contact" class="button-image" width="30" height="30">
+            </span>
+          </div>
+          <div class="btn-text text-white">ME CONTACTER</div>
+        </a>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
