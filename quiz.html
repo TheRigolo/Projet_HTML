@@ -12,9 +12,9 @@
         <div id="quiz-container" class="space-y-6 w-full"></div>
         <div id="resultat" class="mt-6 text-center font-semibold"></div>
         <div id="formulaireBtn" class="mt-4 text-center hidden">
-            <a href="form.html" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">Continuer vers le formulaire</a>
+            <a href="form.html" class="transition-all duration-200 bg-gradient-to-r from-green-500 to-emerald-600 shadow-lg text-white px-8 py-3 rounded-full font-bold text-lg tracking-wide hover:from-green-600 hover:to-emerald-700 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-green-300">Continuer vers le formulaire</a>
         </div>
-        <button id="bruteforceBtn" class="mt-6 bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700">Brute force</button>
+        <button id="bruteforceBtn" class="mt-6 transition-all duration-200 bg-gradient-to-r from-red-500 to-pink-600 shadow-lg text-white px-8 py-3 rounded-full font-bold text-lg tracking-wide hover:from-red-600 hover:to-pink-700 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-red-300">Brute force</button>
     </div>
     <script>
 const questions = [
@@ -74,12 +74,12 @@ function renderQuestion() {
     <div>
       <p class="font-semibold mb-2">${q.question}</p>
       ${q.options.map(opt => `
-        <label class="block cursor-pointer mb-2">
-          <input type="radio" name="q${current}" value="${opt.value}" class="mr-2" onchange="checkAnswer(this)">
+        <label class="block cursor-pointer mb-2 transition-all duration-150 hover:scale-105 hover:bg-blue-50 rounded-lg px-2 py-1">
+          <input type="radio" name="q${current}" value="${opt.value}" class="mr-2 accent-blue-600 focus:ring-2 focus:ring-blue-400" onchange="checkAnswer(this)">
           ${opt.label}
         </label>
       `).join('')}
-      <button id="nextBtn" onclick="nextQuestion()" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 mt-4 hidden">Suivant</button>
+      <button id="nextBtn" onclick="nextQuestion()" class="transition-all duration-200 bg-gradient-to-r from-blue-500 to-cyan-600 shadow-lg text-white px-8 py-3 rounded-full font-bold text-lg tracking-wide hover:from-blue-600 hover:to-cyan-700 hover:scale-105 mt-4 hidden focus:outline-none focus:ring-4 focus:ring-blue-300">Suivant</button>
     </div>
   `;
   document.getElementById('quiz-container').innerHTML = html;
@@ -127,15 +127,40 @@ window.nextQuestion = function() {
   }
 };
 
-// Brute force : passe toutes les questions automatiquement avec les bonnes réponses
-document.getElementById('bruteforceBtn').addEventListener('click', function() {
-  current = questions.length;
-  bonnes = questions.length;
-  document.getElementById('quiz-container').innerHTML = "";
-  document.getElementById('resultat').textContent = "Bravo ! Toutes les réponses sont correctes (brute force).";
-  document.getElementById('resultat').className = "mt-6 text-center text-green-600 font-semibold";
-  document.getElementById('formulaireBtn').classList.remove('hidden');
+// Brute force cinématique
+document.getElementById('bruteforceBtn').addEventListener('click', async function() {
+  current = 0;
+  bonnes = 0;
+  document.getElementById('formulaireBtn').classList.add('hidden');
+  await bruteForceStep();
 });
+
+async function bruteForceStep() {
+  if (current >= questions.length) {
+    document.getElementById('quiz-container').innerHTML = "";
+    document.getElementById('resultat').textContent = "Bravo ! Toutes les réponses sont correctes (brute force).";
+    document.getElementById('resultat').className = "mt-6 text-center text-green-600 font-semibold";
+    document.getElementById('formulaireBtn').classList.remove('hidden');
+    return;
+  }
+  renderQuestion();
+  const q = questions[current];
+  for (let i = 0; i < q.options.length; i++) {
+    // Sélectionne la réponse
+    const input = document.querySelector(`input[name="q${current}"][value="${q.options[i].value}"]`);
+    input.checked = true;
+    checkAnswer(input);
+    await new Promise(res => setTimeout(res, 600));
+    if (q.options[i].value === q.answer) {
+      break;
+    }
+  }
+  // Passe à la question suivante
+  await new Promise(res => setTimeout(res, 600));
+  nextQuestion();
+  await new Promise(res => setTimeout(res, 400));
+  bruteForceStep();
+}
 
 renderQuestion();
 </script>
