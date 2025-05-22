@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Me contacter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4"
+      style="background-image: url('https://images.alphacoders.com/283/283763.jpg'); background-size: cover; background-position: center;">
+    <div class="max-w-xl w-full bg-white bg-opacity-90 rounded-xl shadow-lg border-2 border-gray-300 p-8 flex flex-col items-center">
+        <h1 class="text-3xl font-bold text-center text-blue-900 mb-8">Quiz de contact</h1>
+        <div id="quiz-container" class="space-y-6 w-full"></div>
+        <div id="resultat" class="mt-6 text-center font-semibold"></div>
+        <div id="formulaireBtn" class="mt-4 text-center hidden">
+            <a href="form.html" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">Continuer vers le formulaire</a>
+        </div>
+        <button id="bruteforceBtn" class="mt-6 bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700">Brute force</button>
+    </div>
+    <script>
+const questions = [
+  {
+    question: "1. Combien de temps à duré la guerre de 100 ans ?",
+    options: [
+      { value: "a", label: "100 ans" },
+      { value: "b", label: "+ de 100 ans" }, // ✅
+      { value: "c", label: "- de 100 ans" }
+    ],
+    answer: "b"
+  },
+  {
+    question: "2. Qu'est ce qui est jaune et qui attend ?",
+    options: [
+      { value: "a", label: "Un poussin" },
+      { value: "b", label: "Le soleil" },
+      { value: "c", label: "Jonhatan" } // ✅
+    ],
+    answer: "c"
+  },
+  {
+    question: "3. Qu'est ce qu'un yaourt dans la forêt ?",
+    options: [
+      { value: "a", label: "Un yaourt forestier" },
+      { value: "b", label: "Un yaourt bio" },
+      { value: "c", label: "Un yaourt nature" } // ✅
+    ],
+    answer: "c"
+  },
+  {
+    question: "4. Gifi des idées de ...",
+    options: [
+      { value: "a", label: "génies" }, // ✅
+      { value: "b", label: "renois" },
+      { value: "c", label: "neuilles" }
+    ],
+    answer: "a"
+  },
+  {
+    question: "5. Trouve l'intru",
+    options: [
+      { value: "a", label: "Wapiti" },
+      { value: "b", label: "woiseau" }, // ✅
+      { value: "c", label: "wallaby" }
+    ],
+    answer: "b"
+  }
+];
+
+let current = 0;
+let bonnes = 0;
+
+function renderQuestion() {
+  const q = questions[current];
+  let html = `
+    <div>
+      <p class="font-semibold mb-2">${q.question}</p>
+      ${q.options.map(opt => `
+        <label class="block cursor-pointer mb-2">
+          <input type="radio" name="q${current}" value="${opt.value}" class="mr-2" onchange="checkAnswer(this)">
+          ${opt.label}
+        </label>
+      `).join('')}
+      <button id="nextBtn" onclick="nextQuestion()" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 mt-4 hidden">Suivant</button>
+    </div>
+  `;
+  document.getElementById('quiz-container').innerHTML = html;
+  document.getElementById('resultat').textContent = "";
+}
+
+window.checkAnswer = function(input) {
+  const q = questions[current];
+  const nextBtn = document.getElementById('nextBtn');
+  if (input.value === q.answer) {
+    document.getElementById('resultat').textContent = "Bonne réponse !";
+    document.getElementById('resultat').className = "mt-6 text-center text-green-600 font-semibold";
+    nextBtn.classList.remove('hidden');
+  } else {
+    document.getElementById('resultat').textContent = "Mauvaise réponse, réessaie.";
+    document.getElementById('resultat').className = "mt-6 text-center text-red-600 font-semibold";
+    nextBtn.classList.add('hidden');
+  }
+};
+
+window.nextQuestion = function() {
+  const q = questions[current];
+  const checked = document.querySelector(`input[name="q${current}"]:checked`);
+  if (checked && checked.value === q.answer) {
+    bonnes++;
+  }
+  current++;
+  if (current < questions.length) {
+    renderQuestion();
+  } else {
+    document.getElementById('quiz-container').innerHTML = "";
+    if (bonnes === questions.length) {
+      document.getElementById('resultat').textContent = "Bravo ! Toutes les réponses sont correctes.";
+      document.getElementById('resultat').className = "mt-6 text-center text-green-600 font-semibold";
+      document.getElementById('formulaireBtn').classList.remove('hidden');
+    } else {
+      document.getElementById('resultat').textContent = "Il y a des erreurs, recommence le quiz pour continuer.";
+      document.getElementById('resultat').className = "mt-6 text-center text-red-600 font-semibold";
+      document.getElementById('formulaireBtn').classList.add('hidden');
+      // Reset pour recommencer
+      current = 0;
+      bonnes = 0;
+      setTimeout(renderQuestion, 2000);
+    }
+  }
+};
+
+// Brute force : passe toutes les questions automatiquement avec les bonnes réponses
+document.getElementById('bruteforceBtn').addEventListener('click', function() {
+  current = questions.length;
+  bonnes = questions.length;
+  document.getElementById('quiz-container').innerHTML = "";
+  document.getElementById('resultat').textContent = "Bravo ! Toutes les réponses sont correctes (brute force).";
+  document.getElementById('resultat').className = "mt-6 text-center text-green-600 font-semibold";
+  document.getElementById('formulaireBtn').classList.remove('hidden');
+});
+
+renderQuestion();
+</script>
+</body>
+</html>
