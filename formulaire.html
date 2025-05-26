@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulaire de Contact</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4 bg-cover bg-center" style="background-image: url('https://img.freepik.com/vecteurs-libre/fond-texture-fibre-carbone-noir_1017-33436.jpg');">
+  <div class="relative max-w-lg w-full rounded-2xl shadow-2xl border-2 border-yellow-600/60 bg-neutral-900/95 p-10 overflow-hidden z-10">
+    <h1 class="text-4xl font-extrabold text-center mb-8 tracking-widest text-yellow-400 drop-shadow-lg font-serif uppercase"
+        style="letter-spacing:0.15em;">
+      Contact 
+    </h1>
+    <form class="space-y-6">
+      <div class="flex gap-4">
+        <div class="w-1/2">
+          <label class="block text-base font-semibold text-yellow-300 mb-1 tracking-wide" for="prenom">Prénom</label>
+          <input id="prenom" name="prenom" type="text" required
+            class="w-full px-4 py-3 rounded-lg border border-yellow-700 bg-neutral-900 text-yellow-100 placeholder-yellow-300 focus:outline-none focus:ring-2 focus:ring-yellow-400 text-base shadow-inner transition-all duration-200" placeholder="Prénom">
+        </div>
+        <div class="w-1/2">
+          <label class="block text-base font-semibold text-yellow-300 mb-1 tracking-wide" for="nom">Nom</label>
+          <input id="nom" name="nom" type="text" required
+            class="w-full px-4 py-3 rounded-lg border border-yellow-700 bg-neutral-900 text-yellow-100 placeholder-yellow-300 focus:outline-none focus:ring-2 focus:ring-yellow-400 text-base shadow-inner transition-all duration-200" placeholder="Nom">
+        </div>
+      </div>
+      <div>
+        <label class="block text-base font-semibold text-yellow-300 mb-1 tracking-wide" for="email">Email</label>
+        <input id="email" name="email" type="email" required
+          class="w-full px-4 py-3 rounded-lg border border-yellow-700 bg-neutral-900 text-yellow-100 placeholder-yellow-300 focus:outline-none focus:ring-2 focus:ring-yellow-400 text-base shadow-inner transition-all duration-200" placeholder="exemple@email.com">
+      </div>
+      <div>
+        <label class="block text-base font-semibold text-yellow-300 mb-1 tracking-wide" for="objet">Objet</label>
+        <input id="objet" name="objet" type="text" required
+          class="w-full px-4 py-3 rounded-lg border border-yellow-700 bg-neutral-900 text-yellow-100 placeholder-yellow-300 focus:outline-none focus:ring-2 focus:ring-yellow-400 text-base shadow-inner transition-all duration-200" placeholder="Sujet du message">
+      </div>
+      <div>
+        <label class="block text-base font-semibold text-yellow-300 mb-1 tracking-wide" for="message">Message</label>
+        <textarea id="message" name="message" rows="5" required
+          class="w-full px-4 py-3 rounded-lg border border-yellow-700 bg-neutral-900 text-yellow-100 placeholder-yellow-300 focus:outline-none focus:ring-2 focus:ring-yellow-400 text-base shadow-inner transition-all duration-200 resize-none" placeholder="Tape ton message ici..."></textarea>
+      </div>
+      <button type="submit"
+        class="w-full py-3 mt-2 rounded-lg bg-gradient-to-r from-yellow-500 via-yellow-400 to-yellow-300 text-neutral-900 font-extrabold text-lg shadow-xl hover:scale-105 hover:from-yellow-400 hover:to-yellow-200 transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-yellow-400 tracking-widest uppercase">
+        Envoyer
+      </button>
+    </form>
+    <div class="absolute top-4 right-8 flex items-center gap-2 opacity-80 z-10">
+    </div>
+  </div>
+</body>
+</html>
